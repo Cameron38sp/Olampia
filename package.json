@@ -1,0 +1,46 @@
+{
+  "name": "phlampia",
+  "private": true,
+  "packageManager": "npm@11.19.0",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/sync-assets.mjs",
+    "assets:sync": "node scripts/sync-assets.mjs",
+    "icons:generate": "node scripts/generate-app-icons.mjs",
+    "dev:web": "turbo run dev --filter=@phlampia/web",
+    "dev:mobile": "npm run start -w @phlampia/mobile",
+    "dev:mobile:web": "npm run web -w @phlampia/mobile",
+    "ios:device": "npm run ios:device -w @phlampia/mobile",
+    "ios:release": "npm run ios:release -w @phlampia/mobile",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test:db": "node supabase/tests/rls.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^24",
+    "eslint": "^9.39.5",
+    "sharp": "^0.34.5",
+    "supabase": "2.119.0",
+    "turbo": "^2.11.7",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.59.0"
+  },
+  "overrides": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "allowScripts": {
+    "unrs-resolver@1.12.2": true,
+    "sharp@0.34.5": true,
+    "sharp@0.35.5": true
+  }
+}
